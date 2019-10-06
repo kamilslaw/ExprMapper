@@ -24,9 +24,19 @@ namespace ExprMapper.Test
         }
 
         [Test]
-        public void ReferenceReuseTest()
+        public void ReferenceUniquenessTest()
         {
-            Assert.Fail();
+            var mapper = new Mapper().Add<L, R>();
+            var inst = new L { Id = 44, Child = new L.LCh { Id = 88 } };
+            inst.Child.Parent = inst;
+
+            var result = mapper.Map<L, R>(inst);
+
+            Assert.AreEqual(inst.Id, result.Id);
+            Assert.AreEqual(inst.Child.Id, result.Child.Id);
+
+            Assert.AreEqual(result.Id, result.Child.Parent.Id);
+            Assert.AreNotEqual(result, result.Child.Parent);
         }
 
         public class L

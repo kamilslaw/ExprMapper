@@ -1,10 +1,18 @@
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace ExprMapper.Test
 {
     public class SimpleMappingTests
     {
+        [Test]
+        public void NoMappingTest()
+        {
+            var mapper = new Mapper().Add<L, R>();
+            Assert.Throws<KeyNotFoundException>(() => mapper.Map<L, N>(new L()));
+        }
+
         [Test]
         public void NullReferenceTest()
         {
@@ -15,7 +23,10 @@ namespace ExprMapper.Test
         [Test]
         public void SimpleObjectTest()
         {
-            var mapper = new Mapper().Add<L, R>();
+            var mapper = new Mapper()
+                .Add<L, N>()
+                .Add<L, R>()
+                .Add<R, L>();
             var inst = L.Instance;
 
             var result = mapper.Map<L, R>(inst);
@@ -24,6 +35,10 @@ namespace ExprMapper.Test
             Assert.AreEqual(inst.Code, result.Code);
             Assert.AreEqual(inst.Date, result.Date);
             Assert.AreEqual(inst.Name, result.Name);
+        }
+
+        public class N
+        {
         }
 
         public class L
