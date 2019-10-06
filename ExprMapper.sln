@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExprMapper", "ExprMapper\ExprMapper.csproj", "{9307107E-A407-4ADB-A82D-99FA7BA237D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExprMapper.Test", "ExprMapper.Test\ExprMapper.Test.csproj", "{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9307107E-A407-4ADB-A82D-99FA7BA237D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9307107E-A407-4ADB-A82D-99FA7BA237D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9307107E-A407-4ADB-A82D-99FA7BA237D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9307107E-A407-4ADB-A82D-99FA7BA237D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0204DC89-4726-452F-B643-505D604B2EA4}
+	EndGlobalSection
+EndGlobal
