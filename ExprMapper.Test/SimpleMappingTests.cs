@@ -17,7 +17,7 @@ namespace ExprMapper.Test
         public void NullReferenceTest()
         {
             var mapper = new Mapper().Add<L, R>();
-            Assert.IsNull(mapper.Map<L, R>(null));
+            Assert.IsNull(mapper.Map<L, R>(default(L)));
         }
 
         [Test]
@@ -55,6 +55,7 @@ namespace ExprMapper.Test
             public Guid Code { get; set; }
             public DateTime Date { get; set; }
             public string Name { get; set; }
+            public string AA { get; set; }
         }
 
         public class R
@@ -63,6 +64,7 @@ namespace ExprMapper.Test
             public Guid Code { get; set; }
             public DateTime Date { get; set; }
             public string Name { get; set; }
+            public string BB { get; set; }
         }
     }
 }
