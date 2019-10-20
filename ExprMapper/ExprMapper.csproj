@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Kamil Gębarowski</Authors>
+    <Company />
   </PropertyGroup>
 
 </Project>
