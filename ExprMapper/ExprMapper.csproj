@@ -1,9 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Kamil Gębarowski</Authors>
     <Company />
+    <PackageTags>Mapper,Mapping,Expression,C#,POCO,Automapper</PackageTags>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/kamilslaw/ExprMapper</PackageProjectUrl>
+    <Title>ExprMapper</Title>
+    <Description>Small &amp; efficient C# POCO classes mapper.
+Features:
+- Objects mapping with null references handling
+- Nested objects mapping
+- Mapping collection types (array, list &amp; IEnumerable), as well as the collection type properties
+- Custom mapping functions for selected properties</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="logo.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>
