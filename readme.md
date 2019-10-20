@@ -19,23 +19,23 @@ return new Destination {
 
 - Objects mapping with null references handling
 - Nested objects mapping
-- Mapping collection types (array, list & IEnumerable), as well as collection type properties
+- Mapping collection types (array, list & IEnumerable), as well as the collection type properties
 - Custom mapping functions for selected properties
 
 ## How to use it?
 
-First, creates the mapper instance, which defines available mappings:
+First, create the mapper instance, which defines available mappings:
 
 ```csharp
 var mapper = new Mapper()
     .Add<L, R>()
-	.Add<UserDTO, User>();
+    .Add<UserDTO, User>();
 ```
 
 Then just call:
 
 ```csharp
-var result = mapper.Map<L, R>(someObj);
+var result = mapper.Map<L, R>(someObj);  // L -> R
 ```
 
 Defining the mapping with custom bindings:
@@ -51,13 +51,13 @@ To see more scenarios, check the `ExprMapper.Test` project.
 
 ## Requirements
 
-- parameterless constructor in a target class
+- parameterless constructor in the target class
 - only public properties are mapped
-- inner collections' types have to be the same in source & destination classes (`T[] -> U[]`, `IList<T> -> IList<U>`, `IEnumerable<T> -> IEnumerable<U>`)
+- inner collection types have to be the same in the source and destination classes (`T[] -> U[]`, `IList<T> -> IList<U>`, `IEnumerable<T> -> IEnumerable<U>`)
 
 ## Motivation
 
-Expressions allows us to generate code in a runtime, which can be really fast (at least faster than reflection). This library is small and efficient. It can easily improve a development process.
+Expressions allow us to generate code in a runtime, which can be really fast (at least faster than reflection). This library is an efficient tool and can easily improve a development process.
 
 ## Benchmark
 
