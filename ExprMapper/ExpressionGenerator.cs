@@ -16,21 +16,28 @@ namespace ExprMapper
         private static readonly MethodInfo ENUMERABLE_TO_ARRAY = typeof(Enumerable).GetMethod(nameof(Enumerable.ToArray));
         private static readonly MethodInfo ENUMERABLE_TO_LIST = typeof(Enumerable).GetMethod(nameof(Enumerable.ToList));
 
-        public static Func<TIn, TOut> GetMapper<TIn, TOut>()
+        public static Func<TIn, TOut> GetMapper<TIn, TOut>(CustomBinding<TIn, TOut>[] customBindings)
         {
             var param = Expression.Parameter(typeof(TIn), "x");
-            var bindings = GetBinding(param, typeof(TOut));
+            var bindings = GetBinding(param, typeof(TOut), customBindings);
             var lambda = Expression.Lambda<Func<TIn, TOut>>(bindings, param);
             return lambda.Compile();
         }
 
-        private static Expression GetBinding(Expression prop, Type targetType, int depth = 0)
+        private static Expression GetBinding<TIn, TOut>(Expression prop, Type targetType, CustomBinding<TIn, TOut>[] customBindings, int depth = 0)
         {
             var ctor = Expression.New(targetType);
             var bindings = targetType
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Select(p =>
                 {
+                    var customBinding = customBindings.FirstOrDefault(cb => targetType == typeof(TOut) && cb.MemberName == p.Name);
+                    if (customBinding is object)
+                    {
+                        var valueExpr = Expression.Invoke(Expression.Constant(customBinding.BindingFunc), prop);
+                        return Expression.Bind(p, Expression.Convert(valueExpr, p.PropertyType));
+                    }
+
                     var sourceMi = prop.Type.GetProperty(p.Name);
                     if (sourceMi is null)
                     {
@@ -59,7 +66,7 @@ namespace ExprMapper
                                     ENUMERABLE_SELECT.MakeGenericMethod(baseSourceType, baseTargetType),
                                     sourceProp,
                                     Expression.Lambda(
-                                        baseTargetType == baseSourceType ? childParam : ToNullAwareExpression(baseTargetType, childParam, () => GetBinding(childParam, baseTargetType, depth + 1)),
+                                        baseTargetType == baseSourceType ? childParam : ToNullAwareExpression(baseTargetType, childParam, () => GetBinding(childParam, baseTargetType, customBindings, depth + 1)),
                                         childParam))
                                 ));
                     }
@@ -75,7 +82,7 @@ namespace ExprMapper
                                     ENUMERABLE_SELECT.MakeGenericMethod(baseSourceType, baseTargetType),
                                     sourceProp,
                                     Expression.Lambda(
-                                        baseTargetType == baseSourceType ? childParam : ToNullAwareExpression(baseTargetType, childParam, () => GetBinding(childParam, baseTargetType, depth + 1)),
+                                        baseTargetType == baseSourceType ? childParam : ToNullAwareExpression(baseTargetType, childParam, () => GetBinding(childParam, baseTargetType, customBindings, depth + 1)),
                                         childParam))
                                 ));
                     }
@@ -89,13 +96,13 @@ namespace ExprMapper
                                 ENUMERABLE_SELECT.MakeGenericMethod(baseSourceType, baseTargetType),
                                 sourceProp,
                                 Expression.Lambda(
-                                    baseTargetType == baseSourceType ? childParam : ToNullAwareExpression(baseTargetType, childParam, () => GetBinding(childParam, baseTargetType, depth + 1)),
+                                    baseTargetType == baseSourceType ? childParam : ToNullAwareExpression(baseTargetType, childParam, () => GetBinding(childParam, baseTargetType, customBindings, depth + 1)),
                                     childParam))
                             );
                     }
                     else
                     {
-                        expr = ToNullAwareExpression(p, sourceProp, () => GetBinding(sourceProp, p.PropertyType, depth + 1));
+                        expr = ToNullAwareExpression(p, sourceProp, () => GetBinding(sourceProp, p.PropertyType, customBindings, depth + 1));
                     }
 
                     return Expression.Bind(p, expr);

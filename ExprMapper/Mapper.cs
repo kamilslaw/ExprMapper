@@ -8,9 +8,9 @@ namespace ExprMapper
     {
         private Dictionary<(Type, Type), Delegate> _mappings = new Dictionary<(Type, Type), Delegate>();
 
-        public Mapper Add<TSource, TDestination>()
+        public Mapper Add<TSource, TDestination>(params CustomBinding<TSource, TDestination>[] bindings)
         {
-            var mapping = ExpressionGenerator.GetMapper<TSource, TDestination>();
+            var mapping = ExpressionGenerator.GetMapper(bindings);
             _mappings.Add((typeof(TSource), typeof(TDestination)), mapping);
             return this;
         }
