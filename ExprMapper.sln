@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExprMapper", "ExprMapper\ExprMapper.csproj", "{9307107E-A407-4ADB-A82D-99FA7BA237D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExprMapper", "ExprMapper\ExprMapper.csproj", "{9307107E-A407-4ADB-A82D-99FA7BA237D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExprMapper.Test", "ExprMapper.Test\ExprMapper.Test.csproj", "{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExprMapper.Test", "ExprMapper.Test\ExprMapper.Test.csproj", "{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExprMapper.Bench", "ExprMapper.Bench\ExprMapper.Bench.csproj", "{E779F60F-60DD-49C6-854E-8623C39A2E36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA95ADB-F6BA-4279-966E-D3FC5CB98D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E779F60F-60DD-49C6-854E-8623C39A2E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E779F60F-60DD-49C6-854E-8623C39A2E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E779F60F-60DD-49C6-854E-8623C39A2E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E779F60F-60DD-49C6-854E-8623C39A2E36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

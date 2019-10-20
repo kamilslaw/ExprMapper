@@ -37,7 +37,7 @@ namespace ExprMapper
             return source.Select(mapping);
         }
 
-        public IList<TDestination> Map<TSource, TDestination>(IList<TSource> source)
+        public List<TDestination> Map<TSource, TDestination>(IList<TSource> source)
         {
             if (source == default)
             {
